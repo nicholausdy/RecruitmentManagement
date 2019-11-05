@@ -6,6 +6,7 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse
 from socketserver import ThreadingMixIn
 import threading
+import ssl
 
 class Parse:
     def pathURLBeforeID(url):
@@ -154,13 +155,17 @@ class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
 if __name__=='__main__':
 #execute server 
     port = 8000
+    USE_HTTPS = True
+    server = ThreadedHTTPServer(("",port), Request)
     try:
-        with ThreadedHTTPServer(("",port), Request) as httpd:
-            print("LinkedIn Maid serving at port ", port, "...")
-            httpd.serve_forever()
+        print("LinkedIn Maid serving at port ", port, "...")
+        if USE_HTTPS:
+            import ssl
+            server.socket = ssl.wrap_socket(server.socket, keyfile='./key.pem', certfile='./cert.pem', server_side=True)
+        server.serve_forever()
     except KeyboardInterrupt:
         print("Cafe ditutup")
-        httpd.socket.close()
+        server.socket.close()
 
 
 
