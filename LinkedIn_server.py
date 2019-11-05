@@ -1,9 +1,11 @@
 import json
 import http.server
-from scrape import Scraper
-from dbInterface import DBManager
+from LinkedIn_scrape import Scraper
+from LinkedIn_dbInterface import DBManager
 from http.server import HTTPServer, SimpleHTTPRequestHandler
 from urllib.parse import urlparse
+from socketserver import ThreadingMixIn
+import threading
 
 class Parse:
     def pathURLBeforeID(url):
@@ -40,6 +42,8 @@ class Request(http.server.SimpleHTTPRequestHandler):
         if Parse.pathURLBeforeID(self.path) == '/users/accounts/general/': #jika endpoint sebagai berikut:
             idSearch = Parse.pathID(self.path) #dapatkan id dari hasil parsing
             db_query_result = DBManager.readFromAccount(idSearch) #memperoleh hasil query database dalam bentuk array
+            message = threading.currentThread().getName()
+            print(message)
             if db_query_result[0] == 'Invalid AccountID': # jika data tidak ditemukan di database, lakukan scraping
                 Wait.waitForResponse(self)
                 scrape_result = Scraper.scrapingAbout(idSearch) 
@@ -51,23 +55,31 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     self.send_response(200)
                     self.send_header("Content-type","application/json")
                     self.end_headers()
+                    message = threading.currentThread().getName()
+                    print(message)
                     self.wfile.write(json.dumps(dict_result).encode()) # konversi dictionary menjadi json + encode
                 else:
                     error_message = {'Feedback': 'Invalid AccountID','AccountID': idSearch} #jika record tidak berhasil dimasukkan ke dalam DB/tidak ada id yang valid, lakukan hal berikut:
                     self.send_response(404)
                     self.send_header("Content-type","application/json")
                     self.end_headers()
+                    message = threading.currentThread().getName()
+                    print(message)
                     self.wfile.write(json.dumps(error_message).encode())
             elif db_query_result[0] == idSearch: #jika data sudah ada dalam database:
                 dict_result = {'AccountID': db_query_result[0],'AccountName': db_query_result[1],'AccountTitle':db_query_result[2],'AccountRegion':db_query_result[3]} 
                 self.send_response(200)
                 self.send_header("Content-type","application/json")
                 self.end_headers()
+                message = threading.currentThread().getName()
+                print(message)
                 self.wfile.write(json.dumps(dict_result).encode())
                 
         elif Parse.pathURLBeforeID(self.path) == '/users/accounts/education/': #jika endpoint sebagai berikut:
             idSearch = Parse.pathID(self.path) #dapatkan id dari hasil parsing
             db_query_result = DBManager.readFromEducation(idSearch) #memperoleh hasil query database dalam bentuk array
+            message = threading.currentThread().getName()
+            print(message)
             if db_query_result[0] == 'Invalid AccountID': # jika data tidak ditemukan di database, lakukan scraping
                 Wait.waitForResponse(self)
                 scrape_result = Scraper.scrapingEducation(idSearch) 
@@ -79,23 +91,31 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     self.send_response(200)
                     self.send_header("Content-type","application/json")
                     self.end_headers()
+                    message = threading.currentThread().getName()
+                    print(message)
                     self.wfile.write(json.dumps(dict_result).encode()) # konversi dictionary menjadi json + encode
                 else:
                     error_message = {'Feedback': 'Invalid AccountID','AccountID': idSearch} #jika record tidak berhasil dimasukkan ke dalam DB/tidak ada id yang valid, lakukan hal berikut:
                     self.send_response(404)
                     self.send_header("Content-type","application/json")
                     self.end_headers()
+                    message = threading.currentThread().getName()
+                    print(message)
                     self.wfile.write(json.dumps(error_message).encode())
             elif db_query_result[0] == idSearch: #jika data sudah ada dalam database:
                 dict_result = {'AccountID': db_query_result[0],'EducationInstitution': db_query_result[1],'EducationTitle':db_query_result[2]}
                 self.send_response(200)
                 self.send_header("Content-type","application/json")
                 self.end_headers()
+                message = threading.currentThread().getName()
+                print(message)
                 self.wfile.write(json.dumps(dict_result).encode())
 
         elif Parse.pathURLBeforeID(self.path) == '/users/accounts/workplace/': #jika endpoint sebagai berikut
             idSearch = Parse.pathID(self.path) #dapatkan id dari hasil parsing
             db_query_result = DBManager.readFromWorkplace(idSearch) #memperoleh hasil query database dalam bentuk array
+            message = threading.currentThread().getName()
+            print(message)
             if db_query_result[0] == 'Invalid AccountID': # jika data tidak ditemukan di database, lakukan scraping
                 Wait.waitForResponse(self)
                 scrape_result = Scraper.scrapingWorkplace(idSearch) 
@@ -107,29 +127,40 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     self.send_response(200)
                     self.send_header("Content-type","application/json")
                     self.end_headers()
+                    message = threading.currentThread().getName()
+                    print(message)
                     self.wfile.write(json.dumps(dict_result).encode()) # konversi dictionary menjadi json + encode
                 else:
                     error_message = {'Feedback': 'Invalid AccountID','AccountID': idSearch} #jika record tidak berhasil dimasukkan ke dalam DB/tidak ada id yang valid, lakukan hal berikut:
                     self.send_response(404)
                     self.send_header("Content-type","application/json")
                     self.end_headers()
+                    message = threading.currentThread().getName()
+                    print(message)
                     self.wfile.write(json.dumps(error_message).encode())
             elif db_query_result[0] == idSearch: #jika data sudah ada dalam database:
                 dict_result = {'AccountID': db_query_result[0],'Workplace1': db_query_result[1],'Workplace2':db_query_result[2]}
                 self.send_response(200)
                 self.send_header("Content-type","application/json")
                 self.end_headers()
+                message = threading.currentThread().getName()
+                print(message)
                 self.wfile.write(json.dumps(dict_result).encode())
+
+class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
+    #handle requests in a separate thread
+    pass
             
+if __name__=='__main__':
 #execute server 
-port = 8000
-try:
-    with HTTPServer(("",port), Request) as httpd:
-        print("LinkedIn Maid serving at port ", port, "...")
-        httpd.serve_forever()
-except KeyboardInterrupt:
-    print("Cafe ditutup")
-    httpd.socket.close()
+    port = 8000
+    try:
+        with ThreadedHTTPServer(("",port), Request) as httpd:
+            print("LinkedIn Maid serving at port ", port, "...")
+            httpd.serve_forever()
+    except KeyboardInterrupt:
+        print("Cafe ditutup")
+        httpd.socket.close()
 
 
 
