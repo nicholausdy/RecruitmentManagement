@@ -7,7 +7,7 @@ class DBManager:
         conn = None
         try:
             #connect using md5 method (change /var/lib/pgsql/10/data/pg_hba.conf method from ident to md5)
-            conn = psycopg2.connect(host="192.168.43.206",database="linkedin",user="postgres",password="swordbeach") 
+            conn = psycopg2.connect(host="0.0.0.0",database="linkedin",user="postgres",password="postgres") 
             print("Connected to database")
             return conn
         except(Exception, psycopg2.DatabaseError) as error:
@@ -146,7 +146,7 @@ class DBManager:
         conn = DBManager.connect()
         try:
             cur = conn.cursor()
-            query = """ SELECT * FROM workplace WHERE account_id = %(id)s """
+            query = """ SELECT * FROM workplace WHERE account_id = %(id)d """
             values = {'id': idSearch}
             cur.execute(query,values)
             if(cur.rowcount == 0):
