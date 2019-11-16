@@ -1,18 +1,34 @@
 import psycopg2
+from psycopg2.extras import RealDictCursor
+from dotenv import load_dotenv
+import os
+import json
 
+load_dotenv()
 
 class DBManager:
     def connect():
-        #connect to postgresql
+        #connect to LinkedIn postgresql
         conn = None
         try:
             #connect using md5 method (change /var/lib/pgsql/10/data/pg_hba.conf method from ident to md5)
-            conn = psycopg2.connect(host="0.0.0.0",database="linkedin",user="postgres",password="postgres") 
+            conn = psycopg2.connect(host=os.environ["LINKEDIN_DB_HOST"],database=os.environ["LINKEDIN_DB_NAME"],user=os.environ["LINKEDIN_DB_USER"],password=os.environ["LINKEDIN_DB_PASS"]) 
             print("Connected to database")
             return conn
         except(Exception, psycopg2.DatabaseError) as error:
             print(error)
 
+    def connectApp():
+        #connect to Applicants postgresql
+        conn = None
+        try:
+            #connect using md5 method (change /var/lib/pgsql/10/data/pg_hba.conf method from ident to md5)
+            conn = psycopg2.connect(host=os.environ["APP_DB_HOST"],database=os.environ["APP_DB_NAME"],user=os.environ["APP_DB_USER"],password=os.environ["APP_DB_PASS"]) 
+            print("Connected to database")
+            return conn
+        except(Exception, psycopg2.DatabaseError) as error:
+            print(error)
+    
     def close(conn):
         #close connection to postgresql
         if conn is not None:
@@ -88,6 +104,25 @@ class DBManager:
         finally:
             DBManager.close(conn)
 
+    def insertToApplicants(info):
+        conn = DBManager.connectApp()
+         #create a cursor to execute command
+        try:
+            cur = conn.cursor()
+            query = """ INSERT INTO applicants(linkedin_email,twitter_username) VALUES (%(e)s,%(t)s) """
+            values = {'e':info['linkedin_email'],'t':info['twitter_username']}
+            cur.execute(query,values)
+            conn.commit()
+            dump = {'Message': 'Record inserted successfully into DB'}
+            return json.dumps(dump)
+        except(Exception, psycopg2.Error) as error:
+            if(conn):
+                dump = {'Message': 'Failed to insert record into mobile table','Detail':error}
+                print(dump)
+                return json.dumps(dump)
+        finally:
+            DBManager.close(conn)
+
     def readFromAccount(idSearch):
         conn = DBManager.connect()
         try:
@@ -142,11 +177,12 @@ class DBManager:
                 return message
         finally:
             DBManager.close(conn)
+
     def readFromWorkplace(idSearch):
         conn = DBManager.connect()
         try:
             cur = conn.cursor()
-            query = """ SELECT * FROM workplace WHERE account_id = %(id)d """
+            query = """ SELECT * FROM workplace WHERE account_id = %(id)s """
             values = {'id': idSearch}
             cur.execute(query,values)
             if(cur.rowcount == 0):
@@ -169,7 +205,76 @@ class DBManager:
                 return message
         finally:
             DBManager.close(conn)
-        
+
+    def readFromApplicants():
+        conn = DBManager.connectApp()
+        try:
+            cur = conn.cursor(cursor_factory=RealDictCursor)
+            cur.execute(""" SELECT * FROM applicants """)
+            json_result = json.dumps(cur.fetchall())
+        except(Exception, psycopg2.Error) as error:
+            dump = {'Message':'Failed to read record from mobile table','Detail':error}
+            json_result = json.dumps(dump)
+        finally:
+            print(json_result)
+            DBManager.close(conn)
+            return json_result
+
+    def readAllFromAccount():
+        conn = DBManager.connect()
+        try:
+            cur = conn.cursor(cursor_factory=RealDictCursor)
+            cur.execute(""" SELECT * FROM account """)
+            json_result = json.dumps(cur.fetchall())
+        except(Exception, psycopg2.Error) as error:
+            dump = {'Message':'Failed to read record from mobile table','Detail':error}
+            json_result = json.dumps(dump)
+        finally:
+            print(json_result)
+            DBManager.close(conn)
+            return json_result
+
+    def readAllFromEducation():
+        conn = DBManager.connect()
+        try:
+            cur = conn.cursor(cursor_factory=RealDictCursor)
+            cur.execute(""" SELECT * FROM education """)
+            json_result = json.dumps(cur.fetchall())
+        except(Exception, psycopg2.Error) as error:
+            dump = {'Message':'Failed to read record from mobile table','Detail':error}
+            json_result = json.dumps(dump)
+        finally:
+            print(json_result)
+            DBManager.close(conn)
+            return json_result
+
+    def readAllFromWorkplace():
+        conn = DBManager.connect()
+        try:
+            cur = conn.cursor(cursor_factory=RealDictCursor)
+            cur.execute(""" SELECT * FROM workplace """)
+            json_result = json.dumps(cur.fetchall())
+        except(Exception, psycopg2.Error) as error:
+            dump = {'Message':'Failed to read record from mobile table','Detail':error}
+            json_result = json.dumps(dump)
+        finally:
+            print(json_result)
+            DBManager.close(conn)
+            return json_result
+
+    def readAll():
+        conn = DBManager.connect()
+        try:
+            cur = conn.cursor(cursor_factory=RealDictCursor)
+            cur.execute(""" SELECT account.account_id,account_name,account_title,account_region,education_institution,workplace1,workplace2 FROM account INNER JOIN education on account.account_id = education.account_id INNER JOIN workplace on education.account_id = workplace.account_id """)
+            json_result = json.dumps(cur.fetchall())
+        except(Exception, psycopg2.Error) as error:
+            dump = {'Message':'Failed to read record from mobile table','Detail':error}
+            json_result = json.dumps(dump)
+        finally:
+            print(json_result)
+            DBManager.close(conn)
+            return json_result
 
     
 
