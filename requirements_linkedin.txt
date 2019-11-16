@@ -1,0 +1,4 @@
+parsel==1.5.2
+psycopg2==2.8.3
+selenium==3.141.0
+python-dotenv==0.10.3
