@@ -91,6 +91,21 @@ COPY public.account (account_id, account_name, account_title, account_region) FR
 54b913118	Samantha Prawira	Recruitment Officer (PT. SMART TBK)	Greater Jakarta Area, Indonesia
 b7177a90	Ika Sugiarti	Manager at PT HM Sampoerna Tbk	East Java Province, Indonesia
 08222a18b	Nicholaus Yosodipuro	Information System and Technology Undergraduate Student at Bandung Institute of Technology (ITB)	Greater Jakarta Area, Indonesia
+3a0366145	Sergio Ryan	Information System and Technology Student at Institut Teknologi Bandung | CCNA R&S	West Java Province, Indonesia
+402846142	Aldrich Valentino Halim	Final year student at Institut Teknologi Bandung	Greater Jakarta Area, Indonesia
+1b052b4b	Bobby Prabowo	Android Developer Manager at Quipper	Banten Province, Indonesia
+396b573a	Yuta Funase	Indonesia Country Manager at Quipper	Indonesia
+7b020553	Ivonny Sualdani	Strategy Planner at Quipper	Greater Jakarta Area, Indonesia
+b519927	Widyawardana Adiprawita	Lecturer at Institut Teknologi Bandung	Bandung Area, West Java, Indonesia
+16ab7495	Prangki Tua	Systems Engineer at PT. Packet Systems Indonesia	Greater Jakarta Area, Indonesia
+41363517a	Adani Wicaksono Mawaridi	Digital Marketing Specialist at PT. BRISK BUSI INDONESIA	Greater Jakarta Area, Indonesia
+68a73016b	Vincent Siauw	Sales Manager bei IPCO Germany GmbH	Stuttgart Area, Germany
+70398889	D. Baskara Putra	Brand Manager at Double Deer & Father of BagiKata.	Banten Province, Indonesia
+a0babb130	Abigail Marcia	YLI National Wave 11 by McKinsey & Co	Greater Jakarta Area, Indonesia
+a798b2142	Nezela Ardiani	Assistant Manager, Financial Planning & Analysis	Greater Jakarta Area, Indonesia
+tandicky30@gmail.com	Dicky Tan	Student at Institut Teknologi Bandung	Bandung Area, West Java, Indonesia
+t.williamhalim@gmail.com	William Halim	Student at Institut Teknologi Bandung	Indonesia
+education	\N	\N	\N
 \.
 
 
@@ -110,6 +125,18 @@ COPY public.education (account_id, education_institution, education_title) FROM 
 675b5b91	Institut Teknologi Bandung (ITB)	Master's degree
 b7177a90	Unair	Universitas airlangga Surabaya
 08222a18b	Institut Teknologi Bandung (ITB)	Bachelor's degree
+1b052b4b	\N	\N
+3a0366145	Institut Teknologi Bandung	Bachelor of Engineering - BE
+b519927	Institut Teknologi Bandung (ITB)	Dr.
+16ab7495	Universitas Bina Nusantara (Binus)	Bachelor's degree
+41363517a	Institut Ilmu Sosial dan llmu Politik Jakarta	Bachelor of Applied Science - BASc
+68a73016b	Karlsruher Institut für Technologie (KIT)	Diplom-Ingenieur
+70398889	Universitas Indonesia (UI)	S.Sos
+a0babb130	Institut Teknologi Bandung (ITB)	Bachelor of Food Engineering
+a798b2142	Institut Teknologi Sepuluh Nopember Surabaya	Undergraduate Student
+email	\N	\N
+tandicky30@gmail.com	Institut Teknologi Bandung	Undergraduate
+t.williamhalim@gmail.com	Institut Teknologi Bandung (ITB)	Bachelor of Engineering - BE
 \.
 
 
@@ -126,6 +153,17 @@ COPY public.workplace (account_id, workplace1, workplace2) FROM stdin;
 61a1aa75	Packet Systems Indonesia	Universitas Gunadarma
 54b913118	PT SMART Tbk	Universitas Tarumanagara
 b7177a90	PT HM Sampoerna Tbk	Unair
+1b052b4b	Quipper	Institut Teknologi Bandung
+3a0366145	Self-Employed	Institut Teknologi Bandung
+b519927	Centrums, ITB	Institut Teknologi Bandung
+16ab7495	PT. Packet Systems Indonesia	Universitas Bina Nusantara
+41363517a	PT. BRISK BUSI INDONESIA	Institut Ilmu Sosial dan llmu
+68a73016b	IPCO AB	Karlsruher Institut für
+70398889	Double Deer	Universitas Indonesia (UI)
+a0babb130	Unilever	Institut Teknologi Bandung
+a798b2142	Unilever	Institut Teknologi Sepuluh
+t.williamhalim@gmail.com	Institut Teknologi Bandung	(ITB)
+tandicky30@gmail.com	Lnpoint	Institut Teknologi Bandung
 \.
 
 
