@@ -103,7 +103,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(db_query_result.encode())
 
-        elif Parse.pathURLGetThree(self.path) == '/users/all/general':
+        elif Parse.pathURLGetThree(self.path) == '/users/accounts/general':
             db_query_result = DBManager.readAllFromAccount()
             message = threading.currentThread().getName()
             print(db_query_result)
@@ -113,7 +113,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(db_query_result.encode())
 
-        elif Parse.pathURLGetThree(self.path) == '/users/all/education':
+        elif Parse.pathURLGetThree(self.path) == '/users/accounts/education':
             db_query_result = DBManager.readAllFromEducation()
             message = threading.currentThread().getName()
             print(db_query_result)
@@ -123,7 +123,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
             self.end_headers()
             self.wfile.write(db_query_result.encode())
 
-        elif Parse.pathURLGetThree(self.path) == '/users/all/workplace':
+        elif Parse.pathURLGetThree(self.path) == '/users/accounts/workplace':
             db_query_result = DBManager.readAllFromWorkplace()
             message = threading.currentThread().getName()
             print(db_query_result)
