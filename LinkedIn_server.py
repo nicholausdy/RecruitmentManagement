@@ -388,6 +388,9 @@ class Request(http.server.SimpleHTTPRequestHandler):
             self.send_response(200)
             self.send_header("Content-type","application/json")
             self.send_header("Access-Control-Allow-Origin", "*")
+            self.send_header("Access-Control-Allow-Origin","*")
+            self.send_header("Access-Control-Allow-Methods","GET,POST,OPTIONS")
+            self.send_header("Access-Control-Allow-Headers","X-Requested-With")
             self.end_headers()
             self.wfile.write(db_query_result.encode())
 
@@ -397,6 +400,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
             self.send_header("Access-Control-Allow-Origin","*")
             self.send_header("Access-Control-Allow-Methods","GET,POST,OPTIONS")
             self.send_header("Access-Control-Allow-Headers","X-Requested-With")
+            self.end_headers()
 
 
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
