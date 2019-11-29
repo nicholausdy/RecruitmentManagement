@@ -1,0 +1,13 @@
+[Unit]
+Description=Simple HTTP server instance to serve LinkedIn backend
+After=network.target
+
+[Service]
+User=ec2-user
+Group=nginx
+WorkingDirectory=/home/ec2-user/TST/RecruitmentManagement/LinkedIn-API
+Environment="PATH=/home/ec2-user/TST/RecruitmentManagement/LinkedIn-API/bin"
+ExecStart=/usr/bin/python3 /home/ec2-user/TST/RecruitmentManagement/LinkedIn-API/LinkedIn_server.py
+
+[Install]
+WantedBy=multi-user.target
