@@ -4,6 +4,7 @@ from tweepy import Cursor
 from datetime import datetime, date, time, timedelta
 from collections import Counter
 import sys
+import tweepy
 
 consumer_key="ShGU1J46KOaWtJm5IvgfY8hp9"
 consumer_secret="JyfvAE2udldVzCkxFEAFjvETJnWfclh2ZObQg9P1NVs58ndR1d"
@@ -43,3 +44,55 @@ class UserData :
     finally:
       return dump
 
+  def getTimelineTweets(username):
+    try:
+      api = tweepy.API(auth)
+      account_list = [username]
+      if len(account_list) > 0:
+        for target in account_list:
+          print("Getting data for " +target+"'s tweets")
+          item = auth_api.get_user(target)
+          count = 5
+          result = []
+          for i in range (0,5):
+            tweet = api.user_timeline(id = username)[i]
+            result.append(tweet.text)
+          print(result)
+          dump={
+            "Tweet1":result[0],
+            "Tweet2":result[1],
+            "Tweet3":result[2],
+            "Tweet4":result[3],
+            "Tweet5":result[4],
+            "AccountID":item.screen_name,
+          }
+    except NoUsernameFound as exception:
+      dump={'Feedback: No Username Found'}
+    finally:
+      return dump
+
+  def getUserStats(username):
+    try:
+      account_list = [username]
+      if len(account_list) > 0:
+        for target in account_list:
+          print("Getting data for " + target)
+          item = auth_api.get_user(target)
+          tweets = item.statuses_count
+          account_created_date = item.created_at
+          delta = datetime.utcnow() - account_created_date
+          account_age_days = delta.days
+          print("Account age (in days): " + str(account_age_days))
+          if account_age_days > 0:
+            print("Average tweets per day: " + "%.2f"%(float(tweets)/float(account_age_days)))
+            variabel = (float(tweets)/float(account_age_days))
+          
+          dump = {
+            "AccountID": item.screen_name,
+            "AccountAge": account_age_days,
+            "AverageTweets": variabel,
+          }
+    except NoUsernameFound as exception:
+      dump = {'Feedback: No Username Found'}
+    finally:
+      return dump

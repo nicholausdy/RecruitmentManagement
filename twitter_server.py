@@ -24,14 +24,6 @@ class Parse:
 		parts = path.split('/')
 		return parts[4]
 
-class Wait:
-	def waitForResponse(server):
-		server.send_response(200)
-		server.send_header("Content-type","application/json")
-		server.end_headers()
-		wait_message = {'Feedback': 'Username not found'}
-		server.wfile.write(json.dumps(wait_message).encode())
-
 class Request(http.server.SimpleHTTPRequestHandler):
 	def do_GET(self):
 		if Parse.pathURLBeforeID(self.path) == '/users/accounts/profile/' :
@@ -54,8 +46,59 @@ class Request(http.server.SimpleHTTPRequestHandler):
 			elif "account_username" in db_query_result:
 				self.send_response(200)
 				self.send_header("Content-type","application/json")
+				self.send_header("Access-Control-Allow-Origin","*")
 				self.end_headers()
 				self.wfile.write(json.dumps(db_query_result).encode())
+
+		elif Parse.pathURLBeforeID(self.path) == '/users/accounts/stats/' :
+			username = Parse.pathID(self.path)
+			print(username)
+			db_query_result = json.loads(DBManager.readFromStats(username))
+			print(db_query_result)
+			if "Feedback" in db_query_result:
+				get_result = UserData.getUserStats(username)
+				print(get_result)
+				insert_result = DBManager.insertToStats(get_result)
+				print(insert_result)
+				if insert_result['Message'] == 'Record inserted sucessfully into database':
+					db_query_result = json.loads(DBManager.readFromStats(username))
+					print(db_query_result)
+					self.send_response(200)
+					self.send_header("Content-type","application/json")
+					self.end_headers()
+					self.wfile.write(json.dumps(db_query_result).encode())
+			elif "account_username" in db_query_result:
+				self.send_response(200)
+				self.send_header("Content-type","application/json")
+				self.send_header("Access-Control-Allow-Origin","*")
+				self.end_headers()
+				self.wfile.write(json.dumps(db_query_result).encode())
+
+		elif Parse.pathURLBeforeID(self.path) == '/users/accounts/tweets/' :
+			username = Parse.pathID(self.path)
+			print(username)
+			db_query_result = json.loads(DBManager.readFromTweets(username))
+			print(db_query_result)
+			if "Feedback" in db_query_result:
+				get_result = UserData.getTimelineTweets(username)
+				print(get_result)
+				insert_result = DBManager.insertToTweets(get_result)
+				print(insert_result)
+				if insert_result['Message'] == 'Record inserted sucessfully into database':
+					db_query_result = json.loads(DBManager.readFromTweets(username))
+					print(db_query_result)
+					self.send_response(200)
+					self.send_header("Content-type","application/json")
+					self.send_header("Access-Control-Allow-Origin","*")
+					self.end_headers()
+					self.wfile.write(json.dumps(db_query_result).encode())
+			elif "account_username" in db_query_result:
+				self.send_response(200)
+				self.send_header("Content-type","application/json")
+				self.send_header("Access-Control-Allow-Origin","*")
+				self.end_headers()
+				self.wfile.write(json.dumps(db_query_result).encode())
+
 
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
 	pass
@@ -67,5 +110,5 @@ if __name__ == '__main__':
 		print("Twitter serving at port ",port,"...")
 		server.serve_forever()
 	except KeyboardInterrupt:
-		print("Dammn")
+		print("End")
 		server.socket.close()
