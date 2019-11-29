@@ -83,6 +83,12 @@ class Wait:
 
 class Request(http.server.SimpleHTTPRequestHandler):
 # kelas untuk mengurus API reuqest dari pengguna
+    #bypass CORS block
+    def _send_cors_headers(self):
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods","GET,POST,OPTIONS")
+        self.send_header("Access-Control-Allow-Headers","X-Requested-With")
+
     def do_GET(self): #method untuk mengurus HTTP verb GET
         if Parse.pathURLGetOne(self.path) == '/applicants':
             db_query_result = DBManager.readFromApplicants()
@@ -91,7 +97,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
             print(message)
             self.send_response(200)
             self.send_header("Content-type","application/json")
-            self.send_header("Access-Control-Allow-Origin", "*")
+            self._send_cors_headers()
             self.end_headers()
             self.wfile.write(db_query_result.encode())
 
@@ -102,7 +108,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
             print(message)
             self.send_response(200)
             self.send_header("Content-type","application/json")
-            self.send_header("Access-Control-Allow-Origin", "*")
+            self._send_cors_headers()
             self.end_headers()
             self.wfile.write(db_query_result.encode())
 
@@ -113,7 +119,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
             print(message)
             self.send_response(200)
             self.send_header("Content-type","application/json")
-            self.send_header("Access-Control-Allow-Origin", "*")
+            self._send_cors_headers()
             self.end_headers()
             self.wfile.write(db_query_result.encode())
 
@@ -124,7 +130,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
             print(message)
             self.send_response(200)
             self.send_header("Content-type","application/json")
-            self.send_header("Access-Control-Allow-Origin", "*")
+            self._send_cors_headers()
             self.end_headers()
             self.wfile.write(db_query_result.encode())
 
@@ -135,7 +141,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
             print(message)
             self.send_response(200)
             self.send_header("Content-type","application/json")
-            self.send_header("Access-Control-Allow-Origin", "*")
+            self._send_cors_headers()
             self.end_headers()
             self.wfile.write(db_query_result.encode())
 
@@ -155,7 +161,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     dict_result = {'AccountID': db_query_result[0],'AccountName': db_query_result[1],'AccountTitle':db_query_result[2],'AccountRegion':db_query_result[3]} 
                     self.send_response(200)
                     self.send_header("Content-type","application/json")
-                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self._send_cors_headers()
                     self.end_headers()
                     message = threading.currentThread().getName()
                     print(message)
@@ -164,7 +170,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     error_message = {'Feedback': 'Invalid AccountID','AccountID': idSearch} #jika record tidak berhasil dimasukkan ke dalam DB/tidak ada id yang valid, lakukan hal berikut:
                     self.send_response(404)
                     self.send_header("Content-type","application/json")
-                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self._send_cors_headers()
                     self.end_headers()
                     message = threading.currentThread().getName()
                     print(message)
@@ -173,7 +179,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                 dict_result = {'AccountID': db_query_result[0],'AccountName': db_query_result[1],'AccountTitle':db_query_result[2],'AccountRegion':db_query_result[3]} 
                 self.send_response(200)
                 self.send_header("Content-type","application/json")
-                self.send_header("Access-Control-Allow-Origin", "*")
+                self._send_cors_headers()
                 self.end_headers()
                 message = threading.currentThread().getName()
                 print(message)
@@ -194,7 +200,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     dict_result = {'AccountID': db_query_result[0],'EducationInstitution': db_query_result[1],'EducationTitle':db_query_result[2]} 
                     self.send_response(200)
                     self.send_header("Content-type","application/json")
-                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self._send_cors_headers()
                     self.end_headers()
                     message = threading.currentThread().getName()
                     print(message)
@@ -203,7 +209,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     error_message = {'Feedback': 'Invalid AccountID','AccountID': email} #jika record tidak berhasil dimasukkan ke dalam DB/tidak ada id yang valid, lakukan hal berikut:
                     self.send_response(404)
                     self.send_header("Content-type","application/json")
-                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self._send_cors_headers()
                     self.end_headers()
                     message = threading.currentThread().getName()
                     print(message)
@@ -212,7 +218,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                 dict_result = {'AccountID': db_query_result[0],'EducationInstitution': db_query_result[1],'EducationTitle':db_query_result[2]}
                 self.send_response(200)
                 self.send_header("Content-type","application/json")
-                self.send_header("Access-Control-Allow-Origin", "*")
+                self._send_cors_headers()
                 self.end_headers()
                 message = threading.currentThread().getName()
                 print(message)
@@ -233,7 +239,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     dict_result = {'AccountID': db_query_result[0],'Workplace1': db_query_result[1],'Workplace2':db_query_result[2]} 
                     self.send_response(200)
                     self.send_header("Content-type","application/json")
-                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self._send_cors_headers()
                     self.end_headers()
                     message = threading.currentThread().getName()
                     print(message)
@@ -242,7 +248,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     error_message = {'Feedback': 'Invalid AccountID','AccountID': email} #jika record tidak berhasil dimasukkan ke dalam DB/tidak ada id yang valid, lakukan hal berikut:
                     self.send_response(404)
                     self.send_header("Content-type","application/json")
-                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self._send_cors_headers()
                     self.end_headers()
                     message = threading.currentThread().getName()
                     print(message)
@@ -251,7 +257,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                 dict_result = {'AccountID': db_query_result[0],'Workplace1': db_query_result[1],'Workplace2':db_query_result[2]}
                 self.send_response(200)
                 self.send_header("Content-type","application/json")
-                self.send_header("Access-Control-Allow-Origin", "*")
+                self._send_cors_headers()
                 self.end_headers()
                 message = threading.currentThread().getName()
                 print(message)
@@ -272,7 +278,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     dict_result = {'AccountID': db_query_result[0],'AccountName': db_query_result[1],'AccountTitle':db_query_result[2],'AccountRegion':db_query_result[3]} 
                     self.send_response(200)
                     self.send_header("Content-type","application/json")
-                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self._send_cors_headers()
                     self.end_headers()
                     message = threading.currentThread().getName()
                     print(message)
@@ -281,7 +287,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     error_message = {'Feedback': 'Invalid AccountID','AccountID': idSearch} #jika record tidak berhasil dimasukkan ke dalam DB/tidak ada id yang valid, lakukan hal berikut:
                     self.send_response(404)
                     self.send_header("Content-type","application/json")
-                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self._send_cors_headers()
                     self.end_headers()
                     message = threading.currentThread().getName()
                     print(message)
@@ -290,7 +296,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                 dict_result = {'AccountID': db_query_result[0],'AccountName': db_query_result[1],'AccountTitle':db_query_result[2],'AccountRegion':db_query_result[3]} 
                 self.send_response(200)
                 self.send_header("Content-type","application/json")
-                self.send_header("Access-Control-Allow-Origin", "*")
+                self._send_cors_headers()
                 self.end_headers()
                 message = threading.currentThread().getName()
                 print(message)
@@ -311,7 +317,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     dict_result = {'AccountID': db_query_result[0],'EducationInstitution': db_query_result[1],'EducationTitle':db_query_result[2]} 
                     self.send_response(200)
                     self.send_header("Content-type","application/json")
-                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self._send_cors_headers()
                     self.end_headers()
                     message = threading.currentThread().getName()
                     print(message)
@@ -320,7 +326,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     error_message = {'Feedback': 'Invalid AccountID','AccountID': idSearch} #jika record tidak berhasil dimasukkan ke dalam DB/tidak ada id yang valid, lakukan hal berikut:
                     self.send_response(404)
                     self.send_header("Content-type","application/json")
-                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self._send_cors_headers()
                     self.end_headers()
                     message = threading.currentThread().getName()
                     print(message)
@@ -329,7 +335,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                 dict_result = {'AccountID': db_query_result[0],'EducationInstitution': db_query_result[1],'EducationTitle':db_query_result[2]}
                 self.send_response(200)
                 self.send_header("Content-type","application/json")
-                self.send_header("Access-Control-Allow-Origin", "*")
+                self._send_cors_headers()
                 self.end_headers()
                 message = threading.currentThread().getName()
                 print(message)
@@ -350,7 +356,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     dict_result = {'AccountID': db_query_result[0],'Workplace1': db_query_result[1],'Workplace2':db_query_result[2]} 
                     self.send_response(200)
                     self.send_header("Content-type","application/json")
-                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self._send_cors_headers()
                     self.end_headers()
                     message = threading.currentThread().getName()
                     print(message)
@@ -359,7 +365,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                     error_message = {'Feedback': 'Invalid AccountID','AccountID': idSearch} #jika record tidak berhasil dimasukkan ke dalam DB/tidak ada id yang valid, lakukan hal berikut:
                     self.send_response(404)
                     self.send_header("Content-type","application/json")
-                    self.send_header("Access-Control-Allow-Origin", "*")
+                    self._send_cors_headers()
                     self.end_headers()
                     message = threading.currentThread().getName()
                     print(message)
@@ -368,7 +374,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
                 dict_result = {'AccountID': db_query_result[0],'Workplace1': db_query_result[1],'Workplace2':db_query_result[2]}
                 self.send_response(200)
                 self.send_header("Content-type","application/json")
-                self.send_header("Access-Control-Allow-Origin", "*")
+                self._send_cors_headers()
                 self.end_headers()
                 message = threading.currentThread().getName()
                 print(message)
@@ -387,9 +393,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
             db_query_result = DBManager.insertToApplicants(info)
             self.send_response(200)
             self.send_header("Content-type","application/json")
-            self.send_header("Access-Control-Allow-Origin", "*")
-            self.send_header("Access-Control-Allow-Methods","GET,POST,OPTIONS")
-            self.send_header("Access-Control-Allow-Headers","X-Requested-With")
+            
             self.end_headers()
             self.wfile.write(db_query_result.encode())
 
