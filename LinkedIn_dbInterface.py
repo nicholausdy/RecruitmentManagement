@@ -266,7 +266,7 @@ class DBManager:
         conn = DBManager.connect()
         try:
             cur = conn.cursor(cursor_factory=RealDictCursor)
-            cur.execute(""" SELECT account.account_id,account_name,account_title,account_region,education_institution,workplace1,workplace2 FROM account INNER JOIN education on account.account_id = education.account_id INNER JOIN workplace on education.account_id = workplace.account_id """)
+            cur.execute(""" SELECT account.account_id,account_name,account_title,account_region,education_institution,education_title,workplace1,workplace2 FROM account INNER JOIN education on account.account_id = education.account_id INNER JOIN workplace on education.account_id = workplace.account_id """)
             json_result = json.dumps(cur.fetchall())
         except(Exception, psycopg2.Error) as error:
             dump = {'Message':'Failed to read record from mobile table','Detail':error}
