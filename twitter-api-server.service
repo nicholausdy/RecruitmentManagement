@@ -1,0 +1,13 @@
+[Unit]
+Description=Simple HTTP server to serve Twitter API
+After=network.target
+
+[Service]
+User=ec2-user
+Group=nginx
+WorkingDirectory=/home/ec2-user/TST/RecruitmentManagement/twitter-api
+Environment="PATH=/home/ec2-user/TST/RecruitmentManagement/twitter-api/bin"
+ExecStart=/usr/bin/python3 /home/ec2-user/TST/RecruitmentManagement/twitter-api/twitter_server.py
+
+[Install]
+WantedBy=multi-user.target
