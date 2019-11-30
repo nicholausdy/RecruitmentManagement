@@ -25,6 +25,11 @@ class Parse:
 		return parts[4]
 
 class Request(http.server.SimpleHTTPRequestHandler):
+	def _send_cors_headers(self):
+		self.send_header("Access-Control-Allow-Origin", "*")
+		self.send_header("Access-Control-Allow-Methods","GET,POST,OPTIONS")
+		self.send_header("Access-Control-Allow-Headers","X-Requested-With")
+	
 	def do_GET(self):
 		if Parse.pathURLBeforeID(self.path) == '/users/accounts/profile/' :
 			username = Parse.pathID(self.path)
@@ -41,12 +46,13 @@ class Request(http.server.SimpleHTTPRequestHandler):
 					print(db_query_result)
 					self.send_response(200)
 					self.send_header("Content-type","application/json")
+					self._send_cors_headers()
 					self.end_headers()
 					self.wfile.write(json.dumps(db_query_result).encode())
 			elif "account_username" in db_query_result:
 				self.send_response(200)
 				self.send_header("Content-type","application/json")
-				self.send_header("Access-Control-Allow-Origin","*")
+				self._send_cors_headers()
 				self.end_headers()
 				self.wfile.write(json.dumps(db_query_result).encode())
 
@@ -65,12 +71,13 @@ class Request(http.server.SimpleHTTPRequestHandler):
 					print(db_query_result)
 					self.send_response(200)
 					self.send_header("Content-type","application/json")
+					self._send_cors_headers()
 					self.end_headers()
 					self.wfile.write(json.dumps(db_query_result).encode())
 			elif "account_username" in db_query_result:
 				self.send_response(200)
 				self.send_header("Content-type","application/json")
-				self.send_header("Access-Control-Allow-Origin","*")
+				self._send_cors_headers()
 				self.end_headers()
 				self.wfile.write(json.dumps(db_query_result).encode())
 
@@ -89,13 +96,13 @@ class Request(http.server.SimpleHTTPRequestHandler):
 					print(db_query_result)
 					self.send_response(200)
 					self.send_header("Content-type","application/json")
-					self.send_header("Access-Control-Allow-Origin","*")
+					self._send_cors_headers()
 					self.end_headers()
 					self.wfile.write(json.dumps(db_query_result).encode())
 			elif "account_username" in db_query_result:
 				self.send_response(200)
 				self.send_header("Content-type","application/json")
-				self.send_header("Access-Control-Allow-Origin","*")
+				self._send_cors_headers()
 				self.end_headers()
 				self.wfile.write(json.dumps(db_query_result).encode())
 
