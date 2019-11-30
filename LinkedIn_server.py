@@ -87,7 +87,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
     def _send_cors_headers(self):
         self.send_header("Access-Control-Allow-Origin", "*")
         self.send_header("Access-Control-Allow-Methods","GET,POST,OPTIONS")
-        self.send_header("Access-Control-Allow-Headers","X-Requested-With")
+        self.send_header("Access-Control-Allow-Headers","X-Requested-With,Content-Type")
 
     def do_GET(self): #method untuk mengurus HTTP verb GET
         if Parse.pathURLGetOne(self.path) == '/applicants':
@@ -393,7 +393,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
             db_query_result = DBManager.insertToApplicants(info)
             self.send_response(200)
             self.send_header("Content-type","application/json")
-            
+            self._send_cors_headers() 
             self.end_headers()
             self.wfile.write(db_query_result.encode())
 
@@ -402,7 +402,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
             self.send_response(200,"ok")
             self.send_header("Access-Control-Allow-Origin","*")
             self.send_header("Access-Control-Allow-Methods","GET,POST,OPTIONS")
-            self.send_header("Access-Control-Allow-Headers","X-Requested-With")
+            self.send_header("Access-Control-Allow-Headers","X-Requested-With,Content-Type")
             self.end_headers()
 
 
