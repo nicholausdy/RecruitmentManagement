@@ -141,6 +141,7 @@ const getTwitterProfile = async () => {
         let statusElem = document.getElementById('status');
         let followingElem = document.getElementById('following');
         let followersElem = document.getElementById('followers');
+        let photoElem = document.getElementById('photo');
 
         usernameElem.innerHTML = output.account_username;
         namaElem.innerHTML = output.account_name;
@@ -148,6 +149,7 @@ const getTwitterProfile = async () => {
         statusElem.innerHTML = output.account_status;
         followingElem.innerHTML = output.account_friends;
         followersElem.innerHTML = output.account_followers;
+        photoElem.innerHTML = "<img src="+output.photo+" alt=No Photo"+'""'+" border="+3+" height="+200+" width="+200+"></img>";
   	}
   }
 }
