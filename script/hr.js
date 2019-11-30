@@ -9,7 +9,7 @@ const createRow = (i, accountName) => {
 	careerCell.innerHTML = `<span class="label label-info pull-left" data-effect="pop" >Career details</span>`
 
 	let socialCell = document.createElement('td');
-	socialCell.innerHTML = `<span class="label label-info pull-left" data-effect="pop" >Social details</span>`
+	socialCell.innerHTML = `<span class="label label-success pull-left" data-effect="pop" >Social details</span>`
 
 	careerCell.addEventListener('click', () => detailCareer(accountName));
 	socialCell.addEventListener('click', () => detailSocial(accountName));
