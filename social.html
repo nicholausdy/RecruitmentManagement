@@ -7,7 +7,7 @@
 
   <title>Career Details</title>
 
-  <script src="script/career.js"></script>
+  <script src="script/hr.js"></script>
 
   <link href='https://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,900' rel='stylesheet' type='text/css'>
 
@@ -102,26 +102,117 @@
     </div>
     <!-- Navs done -->
     <div class="row">
+        <div class="col-sm-6 col-lg-6">
+          <a class="btn btn-default" href="hr.html">Back</a>
+    </div>
+    <div class="row">
       <div class="col-sm-12 col-lg-12">
         <h2>Profile</h2>
+          <table class="table table-striped" data-effect="fade">
+            <thead>
+              <tr>
+                <th>Atribut</th>
+                <th>Informasi</th>
+              </tr>
+            </thead>
+            <tbody id="tabelTwitterProfile">
+            <tr>
+              <td>username</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>nama</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>deskripsi</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>status</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>following</td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>followers</td>
+              <td></td>
+            </tr>
+            </tbody>
+          </table>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-12 col-lg-12">
         <h2>Stats</h2>
+          <table class="table table-striped" data-effect="fade">
+            <thead>
+              <tr>
+                <th>Atribut</th>
+                <th>Informasi</th>
+              </tr>
+            </thead>
+            <tbody id="tabelTwitterStats">
+               <tr>
+                <td>Account age</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Average Tweets per day</td>
+                <td></td>
+              </tr>
+              </tr>
+            </tbody>
+          </table>
       </div>
     </div>
-    <div class="row">
+     <div class="row">
       <div class="col-sm-12 col-lg-12">
-        <h2>List of Tweets(Last 5)</h2>
+        <h2>List of tweets (last 5)</h2>
+          <table class="table table-striped" data-effect="fade">
+            <thead>
+              <tr>
+                <th>Atribut</th>
+                <th>Informasi</th>
+              </tr>
+            </thead>
+            <tbody id="tabelTwitterTweets">
+              <tr>
+                <td>tweet 1</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>tweet 2</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>tweet 3</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>tweet 4</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>tweet 5</td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
       </div>
     </div>
-
 
   <script src="assets/js/jquery.js"></script>
   <script src="assets/js/bootstrap.min.js"></script>
 
   <script src="assets/js/typeahead.min.js"></script>
+  <script>
+    window.onload = getTwitterProfileByName();
+    window.onload = getTwitterStatsByName();
+    window.onload = getTwitterTweetsByName();
+  </script>
 
 </body>
 

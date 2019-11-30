@@ -5,9 +5,9 @@
 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-  <title>Applicants Registration</title>
+  <title>Human Resource Page</title>
 
-  <script src="script/applicants.js"></script>
+  <script type="text/javascript" src="script/hr.js"></script>
 
   <link href='https://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,900' rel='stylesheet' type='text/css'>
 
@@ -16,12 +16,10 @@
   <meta name="keywords" content="bootstrap 3, skin, flat">
   <meta name="author" content="bootstraptaste">
 
-  <!-- Bootstrap css -->
   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/css/bootstrap.techie.css" rel="stylesheet">
 
 
-  <!-- Docs Custom styles -->
   <style>
     body,
     html {
@@ -80,7 +78,53 @@
     .navbar-inverse {
       margin: 0
     }
+    td .label {
+      cursor: pointer;
+    }
   </style>
 
 </head>
 
+<body>
+
+  <div class="container">
+
+    <div class="row">
+      <!-- Navbar -->
+      <div class="col-sm-12 col-lg-12">
+            <nav class="navbar navbar-inverse" role="navigation">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="#"><b>Human Resource Page</b></a>
+              </div>
+            </nav>
+          </div>
+    </div>
+    <!-- Navs done -->
+    
+    <div class="row">
+        <div class="col-sm-12 col-lg-12">
+          <h2>Applicants Lists</h2>
+            <table class="table table-striped" data-effect="fade">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama</th>
+                  <th>Career</th>
+                  <th>Social</th>
+                </tr>
+              </thead>
+              <tbody id="tabelHR">
+              </tbody>
+            </table>
+        </div>
+    </div>
+   
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+  <script src="assets/js/typeahead.min.js"></script>
+  <script>
+    window.onload = loadData;
+  </script>
+</body>
+
+</html>
