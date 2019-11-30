@@ -24,92 +24,9 @@ const createRow = (i, accountName) => {
 	table.appendChild(row);
 }
 
-const createTwitterProfile = (i, username, description, status, following, followers) => {
-	let numCell = document.createElement('td');
-	numCell.innerText = i;
-
-	let usernameCell = document.createElement('td');
-	usernameCell.innerText = username;
-
-	let descriptionCell = document.createElement('td');
-	descriptionCell.innerText = description;
-
-	let statusCell = document.createElement('td');
-	statusCell.innerText = status;
-
-	let followingCell = document.createElement('td');
-	followingCell.innerText = following;
-
-	let followersCell = document.createElement('td');
-	followersCell.innerText = followers;
-
-	let row = document.createElement('tr');
-	row.appendChild(numCell);
-	row.appendChild(usernameCell);
-	row.appendChild(descriptionCell);
-	row.appendChild(statusCell);
-	row.appendChild(followingCell);
-	row.appendChild(followersCell);
-
-	let table = document.getElementById('tabelTwitterProfile');
-	table.appendChild(row);
-}
-
-const createTwitterStats = (i, accountAge, accountAverage) => {
-	let numCell = document.createElement('td');
-	numCell.innerText = i;
-
-	let accountAgeCell = document.createElement('td');
-	accountAgeCell.innerText = accountAge;
-
-	let accountAverageCell = document.createElement('td');
-	accountAverageCell.innerText = accountAverage;
-
-	let row = document.createElement('tr');
-	row.appendChild(numCell);
-	row.appendChild(accountAgeCell);
-	row.appendChild(accountAverageCell);
-
-	let table = document.getElementById('tabelTwitterStats');
-	table.appendChild(row);
-}
-
-const createTwitterTweets = (i, tweet1, tweet2, tweet3, tweet4, tweet5) => {
-	let numCell = document.createElement('td');
-	numCell.innerText = i;
-
-	let tweet1Cell = document.createElement('td');
-	tweet1Cell.innerText = tweet1;
-
-	let tweet2Cell = document.createElement('td');
-	tweet2Cell.innerText = tweet2;
-
-	let tweet3Cell = document.createElement('td');
-	tweet1Cel3.innerText = tweet3;
-
-	let tweet4Cell = document.createElement('td');
-	tweet1Cell.innerText = tweet4;
-
-	let tweet5Cell = document.createElement('td');
-	tweet1Cell.innerText = tweet5;
-
-	let row = document.createElement('tr');
-	row.appendChild(numCell);
-	row.appendChild(tweet1Cell);
-	row.appendChild(tweet2Cell);
-	row.appendChild(tweet3Cell);
-	row.appendChild(tweet4Cell);
-	row.appendChild(tweet5Cell);
-
-	let table = document.getElementById('tabelTwitterTweets');
-	table.appendChild(row);
-}
-
-
 const loadData = async () => {
 	let result = await fetch('http://3.227.193.57:8001/users/all');
 	let data = await result.json();
-	let tabel = document.getElementById('tabelHR');
 	
 	let i = 1;
 	for (let item of data) {
@@ -118,55 +35,165 @@ const loadData = async () => {
 	}
 }
 
-const detailCareer = async (accountID) => {
+const detailCareer = async (accountName) => {
+  window.localStorage.setItem('accountCareer', accountName);
+  let tes = localStorage.getItem('accountCareer');
+
+  let hasil = await fetch('http://3.227.193.57:8001/users/all');
+  let data = await hasil.json()
+  for(let item of data){
+  	let accountNama = window.localStorage.getItem('accountCareer');
+  	if(accountNama === item.account_name){
+  		let account_id = item.account_id;
+  		window.localStorage.setItem('accountIDCareer',account_id );
+  	}
+  }
+
   let urlPart1 = window.location.href.split('/');
   window.location = urlPart1.splice(0, urlPart1.length-1).join('/') + '/carreer.html';
-
-  window.localStorage.setItem('accountCareer', accountName);
 }
 
 const detailSocial = async (accountName) => {
+  window.localStorage.setItem('accountSocial', accountName);
+  let tes = localStorage.getItem('accountSocial');
+
+  let hasil = await fetch('http://3.227.193.57:8001/users/all');
+  let data = await hasil.json()
+  for(let item of data){
+  	let accountNama = window.localStorage.getItem('accountSocial');
+  	if(accountNama === item.account_name){
+  		let account_id = item.account_id;
+  		window.localStorage.setItem('accountIDSocial',account_id );
+  	}
+  }
+
   let urlPart2 = window.location.href.split('/');
   window.location = urlPart2.splice(0, urlPart2.length-1).join('/') + '/social.html';
 
-  window.localStorage.getItem('accountCareer', accountName);
 }
 
-const getTwitterProfileByName = async () => {
-  let accountName = window.localStorage.getItem('accountNameSocial');
-  let result = await fetch('http://3.227.193.57:8002/users/accounts/profile/' + accountName);
+const getLinkedinGeneral = async () => {
+  let accountIDCareer = window.localStorage.getItem('accountIDCareer');
+  console.log(accountIDCareer);
+  let result = await fetch('http://3.227.193.57:8001/users/accounts/general');
   let json = await result.json();
-  let tabel = document.getElementById('tabelTwitterProfile');
-  tabel.innerHTML = '';
-  let i = 1;
   for(let item of json){
-  	createTwitterProfile(i, item.account_username, item.account_description, item.account_status, item.account_friends, item.account_followers);
-  	i++;
+  	if(item.account_id == accountIDCareer){
+		let accountIdElem = document.getElementById('account_id');
+	    let accountNameElem = document.getElementById('account_name');
+	    let accountTitleElem = document.getElementById('account_title');
+	    let accountRegionElem = document.getElementById('account_region');
+
+	    accountIdElem.innerHTML = item.account_id;
+	    accountNameElem.innerHTML = item.account_name;
+	    accountTitleElem.innerHTML = item.account_title;
+	    accountRegionElem.innerHTML = item.account_region;
+	}
   }
 }
 
-const getTwitterStatsByName = async () => {
-  let accountName = window.localStorage.getItem('accountName');
-  let result = await fetch('http://3.227.193.57:8001/users/accounts/stats/' + accountName);
+const getLinkedinEducation = async () => {
+  let accountID = window.localStorage.getItem('accountIDCareer');
+  console.log(accountID);
+  let result = await fetch('http://3.227.193.57:8001/users/accounts/education');
   let json = await result.json();
-  let tabel = document.getElementById('tabelTwitterStats');
-  tabel.innerHTML = '';
-  let i = 1;
   for(let item of json){
-  	createTwitterStats(i, item.account_age, item.account_username);
-  	i++;
+  	if(item.account_id == accountID){
+		let institutionElem = document.getElementById('institution');
+        let educationTitleElem = document.getElementById('educationTitle');
+
+        institutionElem.innerHTML = item.education_institution;
+        educationTitleElem.innerHTML = item.education_title;
+	}
   }
 }
 
-const getTwitterTweetsByName = async () => {
-  let accountName = window.localStorage.getItem('accountName');
-  let result = await fetch('http://3.227.193.57:8001/users/accounts/tweets/' + accountName);
+
+const getLinkedinWorkplace = async () => {
+  let accountID = window.localStorage.getItem('accountIDCareer');
+  console.log(accountID);
+  let result = await fetch('http://3.227.193.57:8001/users/accounts/workplace');
   let json = await result.json();
-  let tabel = document.getElementById('tabelTwitterTweets');
-  tabel.innerHTML = '';
-  let i = 1;
   for(let item of json){
-  	createTwitterTweets(i, item.tweet1, item.tweet2, item.tweet3, item.tweet4, item.tweet5);
-  	i++;
+  	if(item.account_id == accountID){
+		let currentWorkplaceElem = document.getElementById('currentWorkplace');
+		let previousWorkplaceElem = document.getElementById('previousWorkplace');
+
+		currentWorkplaceElem.innerHTML = item.workplace1;
+		previousWorkplaceElem.innerHTML = item.workplace2;
+	}
   }
 }
+
+const getTwitterProfile = async () => {
+  let accountID = window.localStorage.getItem('accountIDSocial');
+  let result = await fetch('http://3.227.193.57:8001/applicants');
+  let json = await result.json();
+  for(let item of json){
+  	if(item.linkedin_email == accountID){
+  		let hasil = await fetch('http://3.227.193.57:8002/users/accounts/profile/' + item.twitter_username);
+  		let results = await hasil.json();
+  		let output = results;
+
+  		let usernameElem = document.getElementById('username');
+        let namaElem = document.getElementById('nama');
+        let descriptionElem = document.getElementById('deskripsi');
+        let statusElem = document.getElementById('status');
+        let followingElem = document.getElementById('following');
+        let followersElem = document.getElementById('followers');
+
+        usernameElem.innerHTML = output.account_username;
+        namaElem.innerHTML = output.account_name;
+        descriptionElem.innerHTML = output.account_description;
+        statusElem.innerHTML = output.account_status;
+        followingElem.innerHTML = output.account_friends;
+        followersElem.innerHTML = output.account_followers;
+  	}
+  }
+}
+
+
+const getTwitterStats = async () => {
+  let accountID = window.localStorage.getItem('accountIDSocial');
+  let result = await fetch('http://3.227.193.57:8001/applicants');
+  let json = await result.json();
+  for(let item of json){
+  	if(item.linkedin_email == accountID){
+  		let hasil = await fetch('http://3.227.193.57:8002/users/accounts/stats/' + item.twitter_username);
+  		let results = await hasil.json();
+  		let output = results;
+
+  		let ageElem = document.getElementById('account_age');
+        let averageElem = document.getElementById('average_tweets');
+
+        ageElem.innerHTML = output.account_age;
+        averageElem.innerHTML = output.average_tweets;
+  	}
+  }
+}
+
+const getTwitterTweets = async () => {
+  let accountID = window.localStorage.getItem('accountIDSocial');
+  let result = await fetch('http://3.227.193.57:8001/applicants');
+  let json = await result.json();
+  for(let item of json){
+  	if(item.linkedin_email == accountID){
+  		let hasil = await fetch('http://3.227.193.57:8002/users/accounts/tweets/' + item.twitter_username);
+  		let results = await hasil.json();
+  		let output = results;
+  		
+		let tweet1Elem = document.getElementById('tweet1');
+        let tweet2Elem = document.getElementById('tweet2');
+        let tweet3Elem = document.getElementById('tweet3');
+        let tweet4Elem = document.getElementById('tweet4');
+        let tweet5Elem = document.getElementById('tweet5');
+
+        tweet1Elem.innerHTML = output.tweet1;
+        tweet2Elem.innerHTML = output.tweet2;
+        tweet3Elem.innerHTML = output.tweet3;
+        tweet4Elem.innerHTML = output.tweet4;
+        tweet5Elem.innerHTML = output.tweet5;
+
+	  }
+  	}
+  }

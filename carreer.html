@@ -5,9 +5,9 @@
 
   <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-  <title>Program Beasiswa</title>
+  <title>Career Details</title>
 
-  <script src="script/hr.js"> </script>
+  <script src="script/hr.js"></script>
 
   <link href='https://fonts.googleapis.com/css?family=Lato:400,300,400italic,700,900' rel='stylesheet' type='text/css'>
 
@@ -91,76 +91,107 @@
     <div class="row">
       <!-- Navbar -->
       <div class="col-sm-12 col-lg-12">
-            <nav class="navbar navbar-inverse" role="navigation">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex2-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
-                <a class="navbar-brand" href="#"><b>Keuangan ITB</b></a>
-              </div>
-
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse navbar-ex2-collapse">
-                <ul class="nav navbar-nav">
-                  <li class="dropdown active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Beasiswa <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <!--<li class="divider"></li>-->
-                      <li class="dropdown-header"></li>
-                      <li><a href="#">Program beasiswa</a></li>
-                      <li><a href="penerima.html">Penerima beasiswa</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="mahasiswa.html">Mahasiswa</a></li>
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tagihan <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                      <!--<li class="divider"></li>-->
-                      <li class="dropdown-header"></li>
-                      <li><a href="tagihan.html">Semua Tagihan</a></li>
-                      <li><a href="tagihanBaru.html">Buat Tagihan Baru</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="laporan.html">Laporan</a></li>
-                </ul>
-              </div>
-              <!-- /.navbar-collapse -->
-            </nav>
-
+        <nav class="navbar navbar-inverse" role="navigation">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#"><b>Human Resource Page</b></a>
           </div>
+        </nav>
+
+      </div>
     </div>
     <!-- Navs done -->
     <div class="row">
         <div class="col-sm-6 col-lg-6">
           <a class="btn btn-default" href="hr.html">Back</a>
     </div>
-
     <div class="row">
-        <div class="col-sm-12 col-lg-12">
-          <h2>Daftar Mahasiswa</h2>
-            <table class="table table-striped" data-effect="fade">
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>ID Mahasiswa</th>
-                  <th>Nama</th>
-                  <th>NIM</th>
-                  <th>Fakultas</th>
-                  <th>Jurusan</th>
-                  <th>Semester</th>
-                </tr>
-              </thead>
-              <tbody id="tabelDetailPenerima">
-              </tbody>
-            </table>
-        </div>
+      <div class="col-sm-12 col-lg-12">
+        <h2>General</h2>
+          <table class="table table-striped" data-effect="fade">
+            <thead>
+              <tr>
+                <th>Atribut</th>
+                <th>Informasi</th>
+              </tr>
+            </thead>
+            <tbody id="tabelLinkedinGeneral">
+            <tr>
+              <td>Id akun</td>
+              <td id="account_id"></td>
+            </tr>
+            <tr>
+              <td>Nama</td>
+              <td id="account_name"></td>
+            </tr>
+            <tr>
+              <td>Title</td>
+              <td id="account_title"></td>
+            </tr>
+            <tr>
+              <td>Region</td>
+              <td id="account_region"></td>
+            </tr>
+            </tbody>
+          </table>
+      </div>
     </div>
-    <script>
-      
-    </script>
+    <div class="row">
+      <div class="col-sm-12 col-lg-12">
+        <h2>Stats</h2>
+          <table class="table table-striped" data-effect="fade">
+            <thead>
+              <tr>
+                <th>Atribut</th>
+                <th>Informasi</th>
+              </tr>
+            </thead>
+            <tbody id="tabelLinkedinEducation">
+               <tr>
+                <td>Education</td>
+                <td id="institution"></td>
+              </tr>
+              <tr>
+                <td>Title</td>
+                <td id="educationTitle"></td>
+              </tr>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+     <div class="row">
+      <div class="col-sm-12 col-lg-12">
+        <h2>List of tweets (last 5)</h2>
+          <table class="table table-striped" data-effect="fade">
+            <thead>
+              <tr>
+                <th>Atribut</th>
+                <th>Informasi</th>
+              </tr>
+            </thead>
+            <tbody id="tabelLinkedinWorkplace">
+              <tr>
+                <td>Current Workplace</td>
+                <td id="currentWorkplace"></td>
+              </tr>
+              <tr>
+                <td>Previous Workplace</td>
+                <td id="previousWorkplace"></td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+    </div>
+
+  <script src="assets/js/jquery.js"></script>
+  <script src="assets/js/bootstrap.min.js"></script>
+
+  <script src="assets/js/typeahead.min.js"></script>
+  <script>
+    window.onload = () => {getLinkedinGeneral(); getLinkedinEducation(); getLinkedinWorkplace()}
+  </script>
+
 </body>
+
 </html>

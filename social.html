@@ -117,28 +117,28 @@
             </thead>
             <tbody id="tabelTwitterProfile">
             <tr>
-              <td>username</td>
-              <td></td>
+              <td>Username</td>
+              <td id="username"></td>
             </tr>
             <tr>
-              <td>nama</td>
-              <td></td>
+              <td>Nama</td>
+              <td id="nama"></td>
             </tr>
             <tr>
-              <td>deskripsi</td>
-              <td></td>
+              <td>Deskripsi</td>
+              <td id="deskripsi"></td>
             </tr>
             <tr>
-              <td>status</td>
-              <td></td>
+              <td>Status</td>
+              <td id="status"></td>
             </tr>
             <tr>
-              <td>following</td>
-              <td></td>
+              <td>Following</td>
+              <td id="following"></td>
             </tr>
             <tr>
-              <td>followers</td>
-              <td></td>
+              <td>Followers</td>
+              <td id="followers"></td>
             </tr>
             </tbody>
           </table>
@@ -157,11 +157,11 @@
             <tbody id="tabelTwitterStats">
                <tr>
                 <td>Account age</td>
-                <td></td>
+                <td id="account_age"></td>
               </tr>
               <tr>
-                <td>Average Tweets per day</td>
-                <td></td>
+                <td>Average Tweets per Day</td>
+                <td id="average_tweets"></td>
               </tr>
               </tr>
             </tbody>
@@ -180,24 +180,24 @@
             </thead>
             <tbody id="tabelTwitterTweets">
               <tr>
-                <td>tweet 1</td>
-                <td></td>
+                <td>t\Tweet 1</td>
+                <td id="tweet1"></td>
               </tr>
               <tr>
-                <td>tweet 2</td>
-                <td></td>
+                <td>Tweet 2</td>
+                <td id="tweet2"></td>
               </tr>
               <tr>
-                <td>tweet 3</td>
-                <td></td>
+                <td>Tweet 3</td>
+                <td id="tweet3"></td>
               </tr>
               <tr>
-                <td>tweet 4</td>
-                <td></td>
+                <td>Tweet 4</td>
+                <td id="tweet4"></td>
               </tr>
               <tr>
-                <td>tweet 5</td>
-                <td></td>
+                <td>Tweet 5</td>
+                <td id="tweet5"></td>
               </tr>
             </tbody>
           </table>
@@ -209,9 +209,7 @@
 
   <script src="assets/js/typeahead.min.js"></script>
   <script>
-    window.onload = getTwitterProfileByName();
-    window.onload = getTwitterStatsByName();
-    window.onload = getTwitterTweetsByName();
+    window.onload = () => {getTwitterProfile(); getTwitterStats(); getTwitterTweets()}
   </script>
 
 </body>
