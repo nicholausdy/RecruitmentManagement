@@ -130,11 +130,12 @@ class Request(http.server.SimpleHTTPRequestHandler):
 				self.wfile.write(json.dumps(db_query_result).encode())
 
 	def do_OPTIONS(self):
-		self.send_response(200,"ok")
-		self.send_header("Access-Control-Allow-Origin","*")
-		self.send_header("Access-Control-Allow-Methods","GET,POST,OPTIONS,PUT")
-		self.send_header("Access-Control-Allow-Headers","X-Requested-With")
-		self.end_headers()
+		if Parse.pathURLBeforeID(self.path) == '/users/accounts/photo/' and Parse.pathID(self.path) :
+			self.send_response(200,"ok")
+			self.send_header("Access-Control-Allow-Origin","*")
+			self.send_header("Access-Control-Allow-Methods","GET,POST,OPTIONS,PUT")
+			self.send_header("Access-Control-Allow-Headers","X-Requested-With")
+			self.end_headers()
 
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
 	pass
