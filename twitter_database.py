@@ -163,3 +163,25 @@ class DBManager:
 				return json.dumps(dump)
 		finally:
 			DBManager.close(conn)
+
+	def uploadPhoto(data,username):
+		conn=DBManager.connect()
+		try:
+			cur = conn.cursor(cursor_factory=RealDictCursor)
+			query = """ UPDATE twittertable SET photo = %(p)s WHERE account_username = %(u)s """
+			values = {
+				'p':data['Photo'],
+				'u':username
+			}
+			cur.execute(query,values)
+			conn.commit()
+			dump = {'Message' : 'Record inserted successfully into database'}
+			print(dump)
+			return json.dumps(dump)
+		except(Exception,psycopg2.Error) as error :
+			if(conn):
+				dump={'Message':'Failed to insert record into mobile table','Detail':error}
+				print(dump)
+				return json.dumps(dump)
+		finally:
+			DBManager.close(conn)

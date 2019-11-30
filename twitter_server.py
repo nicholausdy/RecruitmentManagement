@@ -106,6 +106,35 @@ class Request(http.server.SimpleHTTPRequestHandler):
 				self.end_headers()
 				self.wfile.write(json.dumps(db_query_result).encode())
 
+	def do_POST(self):
+		if Parse.pathURLBeforeID(self.path) == '/users/accounts/photo/':
+			username = Parse.pathID(self.path)
+			print(username)
+			db_query_result = json.loads(DBManager.readFromAccount(username))
+			print(db_query_result)
+			if "Feedback" in db_query_result:
+				self.send_response(200)
+				self.send_header("Content-type","application/json")
+				self._send_cors_headers()
+				self.end_headers()
+				self.wfile.write(json.dumps(db_query_result).encode())
+			elif "account_username" in db_query_result:
+				self.send_response(200)
+				self.send_header("Content-type","application/json")
+				self._send_cors_headers()
+				self.end_headers()
+				self.data_string = self.rfile.read(int(self.headers['Content-Length']))
+				info = json.loads(self.data_string)
+				db_query_result = DBManager.uploadPhoto(info,username)
+				self.wfile.write(json.dumps(db_query_result).encode())
+
+	def do_OPTIONS(self):
+		if Parse.pathURLBeforeID(self.path) == '/users/accounts/photo/':
+			self.send_response(200,"ok")
+			self.send_header("Access-Control-Allow-Origin","*")
+			self.send_header("Access-Control-Allow-Methods","GET,POST,OPTIONS")
+			self.send_header("Access-Control-Allow-Headers","X-Requested-With")
+			self.end_headers()
 
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
 	pass
