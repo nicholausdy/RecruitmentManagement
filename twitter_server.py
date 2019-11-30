@@ -133,7 +133,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
 		self.send_response(200,"ok")
 		self.send_header("Access-Control-Allow-Origin","*")
 		self.send_header("Access-Control-Allow-Methods","GET,POST,OPTIONS,PUT")
-		self.send_header("Access-Control-Allow-Headers","X-Requested-With")
+		self.send_header("Access-Control-Allow-Headers","content-type")
 		self.end_headers()
 
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
