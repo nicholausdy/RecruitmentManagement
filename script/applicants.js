@@ -53,22 +53,15 @@ function getBase64(file,cb){
   }
 }
 
-function uploadPhoto(data) {
-    $.ajax({
-        url: 'http://3.227.193.57:8001/users/accounts/photo/'+localStorage.getItem("twitterUsername"),
-        type: 'PUT',
-        contentType: 'application/json',
-        data: JSON.stringify(data),
-        dataType: 'json',
-        success: function(data){
-            console.log("success");
-            //self.location = "http://localhost:4007/";
-        },
-        error: function(xhr,status,error){
-            console.log("error");
-            console.log(error);
-        }
-    });
+const uploadPhoto = async(data) => {
+  await fetch('http://3.227.193.57:10100/users/accounts/photo/'+localStorage.getItem('twitterUsername'),{
+    method: 'PUT',
+    mode: 'cors',
+      headers: {
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(data)
+  })
 }
 
 const uploadButton = async() => {
