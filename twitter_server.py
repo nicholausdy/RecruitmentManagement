@@ -106,7 +106,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
 				self.end_headers()
 				self.wfile.write(json.dumps(db_query_result).encode())
 
-	def do_POST(self):
+	def do_PUT(self):
 		if Parse.pathURLBeforeID(self.path) == '/users/accounts/photo/':
 			username = Parse.pathID(self.path)
 			print(username)
@@ -125,6 +125,7 @@ class Request(http.server.SimpleHTTPRequestHandler):
 				self.end_headers()
 				self.data_string = self.rfile.read(int(self.headers['Content-Length']))
 				info = json.loads(self.data_string)
+				print(info)
 				db_query_result = DBManager.uploadPhoto(info,username)
 				self.wfile.write(json.dumps(db_query_result).encode())
 

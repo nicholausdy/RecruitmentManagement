@@ -175,12 +175,12 @@ class DBManager:
 			}
 			cur.execute(query,values)
 			conn.commit()
-			dump = {'Message' : 'Record inserted successfully into database'}
+			dump = {'Message' : 'Record updated successfully into database'}
 			print(dump)
 			return json.dumps(dump)
 		except(Exception,psycopg2.Error) as error :
 			if(conn):
-				dump={'Message':'Failed to insert record into mobile table','Detail':error}
+				dump={'Message':'Failed to update record into mobile table','Detail':error}
 				print(dump)
 				return json.dumps(dump)
 		finally:
