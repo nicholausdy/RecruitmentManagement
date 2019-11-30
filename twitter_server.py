@@ -27,7 +27,7 @@ class Parse:
 class Request(http.server.SimpleHTTPRequestHandler):
 	def _send_cors_headers(self):
 		self.send_header("Access-Control-Allow-Origin", "*")
-		self.send_header("Access-Control-Allow-Methods","GET,POST,OPTIONS")
+		self.send_header("Access-Control-Allow-Methods","GET,POST,OPTIONS,PUT")
 		self.send_header("Access-Control-Allow-Headers","X-Requested-With")
 	
 	def do_GET(self):
@@ -128,13 +128,6 @@ class Request(http.server.SimpleHTTPRequestHandler):
 				print(info)
 				db_query_result = DBManager.uploadPhoto(info,username)
 				self.wfile.write(json.dumps(db_query_result).encode())
-
-	def do_OPTIONS(self):
-		self.send_response(200,"ok")
-		self.send_header("Access-Control-Allow-Origin","*")
-		self.send_header("Access-Control-Allow-Methods","GET,POST,OPTIONS,PUT")
-		self.send_header("Access-Control-Allow-Headers","content-type")
-		self.end_headers()
 
 class ThreadedHTTPServer(ThreadingMixIn, HTTPServer):
 	pass
