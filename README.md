@@ -7,15 +7,15 @@ Kelompok 20:
 1. William Halim / 18217021 (Commit name: WilliamHalim98)
 2. Nicholaus Danispadmanaba Y / 18217028 (Commmit name: osboxes.org or Cloud User)
 ### Table of Contents
-* [Overview](https://github.com/nicholausdy/RecruitmentManagement/new/master?readme=1#overview)
-* [Created by](https://github.com/nicholausdy/RecruitmentManagement/new/master?readme=1#created-by-)
-* [Functionalities](https://github.com/nicholausdy/RecruitmentManagement/new/master?readme=1#functionalities)
-* [Stack](https://github.com/nicholausdy/RecruitmentManagement/new/master?readme=1#stack)
-* [System Requirements](https://github.com/nicholausdy/RecruitmentManagement/new/master?readme=1#system-requirements)
-  - [Without Installation](https://github.com/nicholausdy/RecruitmentManagement/new/master?readme=1#a-without-installation)
-  - [With Installation](https://github.com/nicholausdy/RecruitmentManagement/new/master?readme=1#b-with-installation)
-* [Usage](https://github.com/nicholausdy/RecruitmentManagement/new/master?readme=1#usage)
-* [Log Act](https://github.com/nicholausdy/RecruitmentManagement/new/master?readme=1#log-act)
+* [Overview](https://github.com/nicholausdy/RecruitmentManagement#overview)
+* [Created by](https://github.com/nicholausdy/RecruitmentManagement#created-by-)
+* [Functionalities](https://github.com/nicholausdy/RecruitmentManagement#functionalities)
+* [Stack](https://github.com/nicholausdy/RecruitmentManagement#stack)
+* [System Requirements](https://github.com/nicholausdy/RecruitmentManagement#system-requirements)
+  - [Without Installation](https://github.com/nicholausdy/RecruitmentManagement#a-without-installation)
+  - [With Installation](https://github.com/nicholausdy/RecruitmentManagement#b-with-installation)
+* [Usage](https://github.com/nicholausdy/RecruitmentManagement#usage)
+* [Log Act](https://github.com/nicholausdy/RecruitmentManagement#log-act)
 ### Functionalities
 1. Job applicants could submit their LinkedIn email or account ID.
 2. Job applicants could submit their Twitter username.
