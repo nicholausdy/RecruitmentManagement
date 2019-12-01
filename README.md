@@ -5,7 +5,7 @@ A web-based application that enables job applicants to submit their professional
 ### Created By :
 Kelompok 20:
 1. William Halim / 18217021 (Commit name: WilliamHalim98)
-2. Nicholaus Danispadmanaba Y / 18217028 (Commmit name: osboxes.org or Cloud User)
+2. Nicholaus Danispadmanaba Y / 18217028 (Commmit name: nicholausdy or osboxes.org or Cloud User)
 ### Table of Contents
 * [Overview](https://github.com/nicholausdy/RecruitmentManagement#overview)
 * [Created by](https://github.com/nicholausdy/RecruitmentManagement#created-by-)
