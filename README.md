@@ -67,7 +67,7 @@ Kelompok 20:
 * Use this LinkedIn email: yanza.hatta@gmail.com
 * Use this Twitter username: hattadubai
 * Upload a JPG image with the maximum size of 100 kB
-- If the JPG file fails to upload when you check the Human Resource page, go back to applicants' page ,then insert the same LinkedIn email and Twitter username (ignore the pop up message from the browser), then upload the JPG image again.
+- If the JPG file fails to load when you check 'Social Details' at the Human Resource page, go back to applicants' page ,then insert the same LinkedIn email and Twitter username (ignore the pop up message from the browser), then upload the JPG image again.
 ### Log Act
 1. November 5: Pembuatan rencana manajemen proyek aplikasi Recruitment Management (Done by: Nicholaus Danispadmanaba Y and William Halim)
 2. November 12: Revisi rencana manajemen proyek aplikasi (Done by: Nicholaus Danispadmanaba Y and William Halim)
