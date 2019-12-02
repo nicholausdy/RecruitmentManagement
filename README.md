@@ -14,6 +14,7 @@ Kelompok 20:
 * [System Requirements](https://github.com/nicholausdy/RecruitmentManagement#system-requirements)
   - [Without Installation](https://github.com/nicholausdy/RecruitmentManagement#a-without-installation)
   - [With Installation](https://github.com/nicholausdy/RecruitmentManagement#b-with-installation)
+* [List of Endpoints]()
 * [Usage](https://github.com/nicholausdy/RecruitmentManagement#usage)
 * [Log Act](https://github.com/nicholausdy/RecruitmentManagement#log-act)
 ### Functionalities
@@ -38,6 +39,22 @@ Kelompok 20:
 2. Interpreter: Python 3.6.8
 3. RDBMS: PostgreSQL 10.10
 4. Versioning: Git
+### List of Endpoints
+| Method | Host | Path | Function |
+| :---: | :---: | :---: | :---: |
+| GET| 3.227.193.57:8001 | /applicants |Show list of LinkedIn email and Twitter username |
+| GET| 3.227.193.57:8001 | /users/all |Show list of all LinkedIn profiles with all attributes (general, workplace, and education | /users/accounts/general | Show list of all LinkedIn profiles with only general attribute |
+| GET| 3.227.193.57:8001 | /users/accounts/education | Show list of all LinkedIn profiles with only education attribute |
+| GET| 3.227.193.57:8001 | /users/accounts/workplace | Show list of all LinkedIn profiles with only workplace attribute |
+| GET| 3.227.193.57:8001 | /user/account/general/email/<LinkedIn email> | Show a LinkedIn profile with the provided email with only general attribute |
+| GET| 3.227.193.57:8001 | /user/account/education/email/<LinkedIn email> | Show a LinkedIn profile with the provided email with only education attribute |
+| GET| 3.227.193.57:8001 | /user/account/workplace/email/<LinkedIn email> | Show a LinkedIn profile with the provided email with only workplace attribute |
+| GET| 3.227.193.57:8001 | /user/account/general/<LinkedIn ID> | Show a LinkedIn profile with the provided ID with only general attribute |
+| GET| 3.227.193.57:8001 | /user/account/education/<LinkedIn ID> | Show a LinkedIn profile with the provided ID with only education attribute |
+| GET| 3.227.193.57:8001 | /user/account/workplace/<LinkedIn ID> | Show a LinkedIn profile with the provided ID with only workplace attribute |
+| POST | 3.227.193.57:8001 | /applicants | Insert JSON containing LinkedIn email and Twitter username to register applicants to system |
+
+
 ### Usage
 1. For Human Resource page, access this URL: http://3.227.193.57:8003
 2. For applicants' page, access this URL: http://3.227.193.57:8003/applicants.html
@@ -52,6 +69,8 @@ Kelompok 20:
 8. November 29: Revisi modul pengambilan data untuk Twitter API (Done by: William Halim)
 9. November 29: Deployment Twitter API dengan AWS EC2 dan Nginx reverse proxy (Done by: Nicholaus Danispadmanaba Y)
 10. November 30: Finalisasi tampilan Recruitment Management (Done by: William Halim)
-11. Desember 1: Testing dan debugging aplikasi (Done by: Nicholaus Danispadmanaba Y and William Halim)
-12. Desember 1: Deployment tampilan front end ke AWS EC2 dengan web server Nginx (Done by: Nicholaus Danispadmanaba Y)
-13. Desember 1: Pembuatan laporan akhir
+11. November 30: Integrasi front-end dengan back-end (Done by: William Halim and Nicholaus Danispadmanaba Y)
+12. November 30: Penambahan fungsi upload photo pada front-end dan back-end (Done by: Nicholaus Danispadmanaba Y)
+13. Desember 1: Testing dan debugging aplikasi (Done by: Nicholaus Danispadmanaba Y and William Halim)
+14. Desember 1: Deployment tampilan front end ke AWS EC2 dengan web server Nginx (Done by: Nicholaus Danispadmanaba Y)
+15. Desember 1: Pembuatan laporan akhir
