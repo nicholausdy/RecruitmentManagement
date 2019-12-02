@@ -2,6 +2,8 @@
 ## Recruitment Management
 ### Overview
 A web-based application that enables job applicants to submit their professional and social data based on their LinkedIn and Twitter data (using APIs), while recruiters or Human Resources could see the aforementioned applicants' professional and social data.
+
+If you want to read the full documentation, visit [this link.](https://github.com/nicholausdy/RecruitmentManagement/blob/master/Group%2020_Laporan%20Integrasi%20API_Recruitment%20Management.pdf)
 ### Created By :
 Kelompok 20:
 1. William Halim / 18217021 (Commit name: WilliamHalim98)
