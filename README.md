@@ -14,7 +14,7 @@ Kelompok 20:
 * [System Requirements](https://github.com/nicholausdy/RecruitmentManagement#system-requirements)
   - [Without Installation](https://github.com/nicholausdy/RecruitmentManagement#a-without-installation)
   - [With Installation](https://github.com/nicholausdy/RecruitmentManagement#b-with-installation)
-* [List of Endpoints]()
+* [List of Endpoints](https://github.com/nicholausdy/RecruitmentManagement#list-of-endpoints)
 * [Usage](https://github.com/nicholausdy/RecruitmentManagement#usage)
 * [Log Act](https://github.com/nicholausdy/RecruitmentManagement#log-act)
 ### Functionalities
@@ -53,7 +53,10 @@ Kelompok 20:
 | GET| 3.227.193.57:8001 | /user/account/education/<LinkedIn ID> | Show a LinkedIn profile with the provided ID with only education attribute |
 | GET| 3.227.193.57:8001 | /user/account/workplace/<LinkedIn ID> | Show a LinkedIn profile with the provided ID with only workplace attribute |
 | POST | 3.227.193.57:8001 | /applicants | Insert JSON containing LinkedIn email and Twitter username to register applicants to system |
-
+| GET | 3.227.193.57:8002 | /users/accounts/profile/<Twitter username> | Show a Twitter profile information based on the provided username |
+| GET | 3.227.193.57:8002 | /users/accounts/stats/<Twitter username> | Show Twitter account statistics based on the provided username |
+| GET | 3.227.193.57:8002 | /users/accounts/tweets/<Twitter username> | Show last 5 tweets of a Twitter account based on the provided username |
+| PUT | 3.227.193.57:8002 | /users/accounts/photo/<Twitter username> | Upload photo |
 
 ### Usage
 1. For Human Resource page, access this URL: http://3.227.193.57:8003
