@@ -46,17 +46,17 @@ Kelompok 20:
 | GET| 3.227.193.57:8001 | /users/all |Show list of all LinkedIn profiles with all attributes (general, workplace, and education | /users/accounts/general | Show list of all LinkedIn profiles with only general attribute |
 | GET| 3.227.193.57:8001 | /users/accounts/education | Show list of all LinkedIn profiles with only education attribute |
 | GET| 3.227.193.57:8001 | /users/accounts/workplace | Show list of all LinkedIn profiles with only workplace attribute |
-| GET| 3.227.193.57:8001 | /user/account/general/email/<LinkedIn email> | Show a LinkedIn profile with the provided email with only general attribute |
-| GET| 3.227.193.57:8001 | /user/account/education/email/<LinkedIn email> | Show a LinkedIn profile with the provided email with only education attribute |
-| GET| 3.227.193.57:8001 | /user/account/workplace/email/<LinkedIn email> | Show a LinkedIn profile with the provided email with only workplace attribute |
-| GET| 3.227.193.57:8001 | /user/account/general/<LinkedIn ID> | Show a LinkedIn profile with the provided ID with only general attribute |
-| GET| 3.227.193.57:8001 | /user/account/education/<LinkedIn ID> | Show a LinkedIn profile with the provided ID with only education attribute |
+| GET| 3.227.193.57:8001 | /user/account/general/email/'LinkedIn email' | Show a LinkedIn profile with the provided email with only general attribute |
+| GET| 3.227.193.57:8001 | /user/account/education/email/'LinkedIn email' | Show a LinkedIn profile with the provided email with only education attribute |
+| GET| 3.227.193.57:8001 | /user/account/workplace/email/'LinkedIn email' | Show a LinkedIn profile with the provided email with only workplace attribute |
+| GET| 3.227.193.57:8001 | /user/account/general/'LinkedIn ID' | Show a LinkedIn profile with the provided ID with only general attribute |
+| GET| 3.227.193.57:8001 | /user/account/education/'LinkedIn ID' | Show a LinkedIn profile with the provided ID with only education attribute |
 | GET| 3.227.193.57:8001 | /user/account/workplace/'LinkedIn ID' | Show a LinkedIn profile with the provided ID with only workplace attribute |
 | POST | 3.227.193.57:8001 | /applicants | Insert JSON containing LinkedIn email and Twitter username to register applicants to system |
-| GET | 3.227.193.57:8002 | /users/accounts/profile/<Twitter username> | Show a Twitter profile information based on the provided username |
-| GET | 3.227.193.57:8002 | /users/accounts/stats/<Twitter username> | Show Twitter account statistics based on the provided username |
-| GET | 3.227.193.57:8002 | /users/accounts/tweets/<Twitter username> | Show last 5 tweets of a Twitter account based on the provided username |
-| PUT | 3.227.193.57:8002 | /users/accounts/photo/<Twitter username> | Upload photo |
+| GET | 3.227.193.57:8002 | /users/accounts/profile/'Twitter username' | Show a Twitter profile information based on the provided username |
+| GET | 3.227.193.57:8002 | /users/accounts/stats/'Twitter username' | Show Twitter account statistics based on the provided username |
+| GET | 3.227.193.57:8002 | /users/accounts/tweets/'Twitter username' | Show last 5 tweets of a Twitter account based on the provided username |
+| PUT | 3.227.193.57:8002 | /users/accounts/photo/'Twitter username' | Upload photo |
 
 ### Usage
 1. For Human Resource page, access this URL: http://3.227.193.57:8003
