@@ -44,6 +44,7 @@ Kelompok 20:
 | :---: | :---: | :---: | :---: |
 | GET| 3.227.193.57:8001 | /applicants |Show list of LinkedIn email and Twitter username |
 | GET| 3.227.193.57:8001 | /users/all |Show list of all LinkedIn profiles with all attributes (general, workplace, and education | /users/accounts/general | Show list of all LinkedIn profiles with only general attribute |
+| GET| 3.227.193.57:8001 | /users/accounts/general | Show list of all LinkedIn profiles with only general attribute |
 | GET| 3.227.193.57:8001 | /users/accounts/education | Show list of all LinkedIn profiles with only education attribute |
 | GET| 3.227.193.57:8001 | /users/accounts/workplace | Show list of all LinkedIn profiles with only workplace attribute |
 | GET| 3.227.193.57:8001 | /user/account/general/email/'LinkedIn email' | Show a LinkedIn profile with the provided email with only general attribute |
