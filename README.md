@@ -64,6 +64,10 @@ Kelompok 20:
 ### Usage
 1. For Human Resource page, access this URL: http://3.227.193.57:8003
 2. For applicants' page, access this URL: http://3.227.193.57:8003/applicants.html
+* Use this LinkedIn email: yanza.hatta@gmail.com
+* Use this Twitter username: hattadubai
+* Upload a JPG image with the maximum size of 100 kB
+- If the JPG file fails to upload when you check the Human Resource page, go back to applicants' page ,then insert the same LinkedIn email and Twitter username (ignore the pop up message from the browser), then upload the JPG image again.
 ### Log Act
 1. November 5: Pembuatan rencana manajemen proyek aplikasi Recruitment Management (Done by: Nicholaus Danispadmanaba Y and William Halim)
 2. November 12: Revisi rencana manajemen proyek aplikasi (Done by: Nicholaus Danispadmanaba Y and William Halim)
