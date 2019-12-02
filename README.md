@@ -76,4 +76,4 @@ Kelompok 20:
 12. November 30: Penambahan fungsi upload photo pada front-end dan back-end (Done by: Nicholaus Danispadmanaba Y)
 13. Desember 1: Testing dan debugging aplikasi (Done by: Nicholaus Danispadmanaba Y and William Halim)
 14. Desember 1: Deployment tampilan front end ke AWS EC2 dengan web server Nginx (Done by: Nicholaus Danispadmanaba Y)
-15. Desember 1: Pembuatan laporan akhir
+15. Desember 2: Pembuatan laporan akhir
