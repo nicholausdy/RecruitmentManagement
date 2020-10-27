@@ -1,6 +1,6 @@
 tweepy==3.8.0
 lxml==4.4.1
-cryptography==2.3
+cryptography==3.2
 psycopg2==2.8.3
 brotli==1.0.7
 Cython==0.29.14
